@@ -5,12 +5,11 @@ export const logoutUser = () => {
   loggedInUser = {};
 };
 
-export const setLoggedInUser = (userObj) => {
-  loggedInUser = userObj;
-};
-
-export const getLoggedInUser = (userObj) => {
-    sessionStorage.setItem("SOuser", JSON.stringify(userObj));
+export const getLoggedInUser = () => {
+    return loggedInUser;
+  };
+  
+  export const setLoggedInUser = (userObj) => {
     loggedInUser = userObj;
   };
   
@@ -20,7 +19,7 @@ export const usePostCollection = () => {
 };
 
 export const getPosts = () => {
-  return fetch(`http://localhost:8088/journal?_expand=users`)
+  return fetch(`http://localhost:8088/users`)
     .then((response) => response.json())
     .then((parsedResponse) => {
       const userId = getLoggedInUser().id;

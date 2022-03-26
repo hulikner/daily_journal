@@ -11,6 +11,8 @@ import {
   updatePost,
   deletePost,
   logoutUser,
+  getLoggedInUser,
+  setLoggedInUser,
 } from "./JournalData.js";
 
 const showEdit = (postObj) => {

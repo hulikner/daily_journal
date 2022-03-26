@@ -1,4 +1,3 @@
-import { JournalEntryComponent } from "./JournalEntry.js";
 import { Post } from "./JournalEntry.js";
 import { getPosts } from "./JournalData.js";
 

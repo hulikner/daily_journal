@@ -1,6 +1,8 @@
-import { JournalEntryComponent, postEntry } from "./JournalEntry.js";
+import { postEntry } from "./JournalEntry.js";
 import { PostList, showPostList } from "./JournalEntryList.js";
-import { PostEdit, clearInputs } from "./JournalEdit.js";
+import { PostEdit, clearInputs } from "./JournalEdit.js"; 
+import { LoginForm } from "../auth/LoginForm.js";
+import { RegisterForm } from "../auth/RegisterForm.js";
 import { Post } from "./JournalEntry.js";
 import {
   getPosts,
@@ -8,12 +10,88 @@ import {
   getSinglePost,
   updatePost,
   deletePost,
+  logoutUser,
 } from "./JournalData.js";
 
 const showEdit = (postObj) => {
   const entryElement = document.querySelector("#form");
   entryElement.innerHTML = PostEdit(postObj);
 };
+
+const checkForUser = () => {
+    if (sessionStorage.getItem("user")){
+      setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
+      showPostList();
+    }else {
+        showLoginRegister();
+    }
+}
+
+const showLoginRegister = () => {
+    
+    const entryElement = document.querySelector(".navBar");
+    //template strings can be used here too
+    entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+    //make sure the post list is cleared out too
+  document.querySelector(".postList");
+  document.innerHTML = "";
+}
+
+document.addEventListener("click", event => {
+    if (event.target.id === "logout") {
+      logoutUser();
+      console.log(getLoggedInUser());
+      sessionStorage.clear();
+      checkForUser();
+    }
+  })
+
+
+document.addEventListener("click", event => {
+    event.preventDefault();
+    if (event.target.id === "login__submit") {
+      //collect all the details into an object
+      const userObject = {
+        name: document.querySelector("input[name='name']").value,
+        email: document.querySelector("input[name='email']").value
+      }
+      loginUser(userObject)
+      .then(dbUserObj => {
+        if(dbUserObj){
+          sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+          showPostList();
+        }else {
+          //got a false value - no user
+          const entryElement = document.querySelector(".form");
+          entryElement.innerHTML = `<p class="center">That user does not exist. Please try again or register for your free account.</p> ${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+        }
+      })
+    }
+  })
+
+  document.addEventListener("click", event => {
+    event.preventDefault();
+    if (event.target.id === "register__submit") {
+      //collect all the details into an object
+      const userObject = {
+        name: document.querySelector("input[name='registerName']").value,
+        email: document.querySelector("input[name='registerEmail']").value
+      }
+      registerUser(userObject)
+      .then(dbUserObj => {
+        sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+        showPostList();
+      })
+    }
+  })
+
+
+document.addEventListener("click", event => {
+    if (event.target.id === "logout") {
+      logoutUser();
+      console.log(getLoggedInUser());
+    }
+  })
 
 document.addEventListener("click", (event) => {
   event.preventDefault();
@@ -69,4 +147,5 @@ document.addEventListener("click", (event) => {
   }
 });
 
+checkForUser()
 showPostList();

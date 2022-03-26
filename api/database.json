@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "name": "Derick",
+      "email": "derick@nss.com"
+    }
+  ],
+
   "journal": [
     {
       "id": 1,

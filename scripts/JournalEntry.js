@@ -1,15 +1,6 @@
 import { clearInputs } from "./JournalEdit.js";
 import { showPostList } from "./JournalEntryList.js";
 
-export const JournalEntryComponent = (entry) => {
-  return `
-        <section id="entry--${entry.id}" class="journalEntry">
-            Display the entry's full text, and the date
-            it was entered here.
-        </section>
-    `;
-};
-
 const apiURL = "http://localhost:8088/journal";
 
 export const postEntry = (obj) => {

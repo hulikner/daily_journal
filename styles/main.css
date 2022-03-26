@@ -1,0 +1,67 @@
+/* @import url("https://fonts.googleapis.com/css?family=Comfortaa|Patua+One"); */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/*Typography
+--------------------------------------------------------------*/
+
+body,
+textarea {
+  color: #000000;
+  background-color: darkgrey;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+}
+.post {
+  display: flex;
+  flex: wrap;
+  flex-direction: column;
+  background-color: rgb(117, 132, 182);
+  border: 10px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto";
+  letter-spacing: 1px;
+}
+h3,
+h2 {
+  align-self: center;
+  text-align: center;
+}
+
+.actionIcon {
+  height: 1.2em;
+  margin: 0.5em 0.5em;
+  cursor: pointer;
+}
+
+.highlight {
+  border-color: purple;
+}
+
+.fakeLink {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+  background: none !important;
+  border: none;
+  cursor: pointer;
+}
+
+.fakeLink:hover {
+  font-weight: bold;
+}
+
+.loginForm {
+  margin: 0 25%;
+}

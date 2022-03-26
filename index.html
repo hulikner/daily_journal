@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" media="screen" href="journal.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./styles/main.css"
+    />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h2>Daily Journal</h2>
-    <form action="">
-        <fieldset>
-            <label for="journalDate">Date of Entry</label>
-            <input type="date" name="journalDate" id="journalDate">
-        </fieldset>
-        <fieldset>
-            <label for="conceptsCovered">Concepts Covered</label>
-            <input type="text" name="conceptsCovered" id="conceptsCovered">
-        </fieldset>
-        <fieldset>
-            <label for="journalEntry">Journal Entry</label>
-            <input type="text" name="journalEntry" id="journalEntry">
-        </fieldset>
-        <fieldset>
-            <label for="mood">Mood for the Day</label>
-            <select name="mood" id="mood">
-                <option value="happy">Happy</option>
-                <option value="sad">Sad</option>
-                <option value="lost">Lost</option>
-                <option value="ok">OK</option>
-              </select>
-        </fieldset>
-        <fieldset>
-            <button type="button">Record Journal Entry</button>
-        </fieldset>
-
+    <header id="header"></header>
+    <form id="form" action="">
+      <fieldset>
+        <label for="journalDate">Date of Entry</label>
+        <input type="date" name="journalDate" id="journalDate" />
+      </fieldset>
+      <fieldset>
+        <label for="conceptsCovered">Concepts Covered</label>
+        <input type="text" name="conceptsCovered" id="conceptsCovered" />
+      </fieldset>
+      <fieldset>
+        <label for="journalEntry">Journal Entry</label>
+        <input type="text" name="journalEntry" id="journalEntry" />
+      </fieldset>
+      <fieldset>
+        <label for="mood">Mood for the Day</label>
+        <select name="mood" id="mood">
+          <option value="happy">Happy</option>
+          <option value="sad">Sad</option>
+          <option value="lost">Lost</option>
+          <option value="ok">OK</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <button type="button" id="Record">Record Journal Entry</button><br />
+        <button type="button" id="search">Filter by Date</button>
+        <input type="text" name="searchInput" id="searchInput" />
+      </fieldset>
     </form>
-    <script type="module" src="./scripts/main.js>
-</body>
+    <section id="postList"></section>
+    <script type="module" src="./scripts/main.js"></script>
+  </body>
 </html>

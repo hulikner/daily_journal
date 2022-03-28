@@ -1,37 +1,87 @@
-/*
- *   Journal data for Daily Journal application
- *
- *      Holds the raw data about each entry and exports
- *      functions that other modules can use to filter
- *      the entries for different purposes.
- */
+let postCollection = [];
+let loggedInUser = {};
 
-// This is the original data.
-const journal = [
-    {
-        id: 1,
-        date: "07/24/2025",
-        concept: "HTML & CSS",
-        entry: "We talked about HTML components and how to make grid layouts with Flexbox in CSS.",
-        mood: "Ok"
+export const logoutUser = () => {
+  loggedInUser = {};
+};
+
+export const getLoggedInUser = () => {
+    return loggedInUser;
+  };
+  
+  export const setLoggedInUser = (userObj) => {
+    loggedInUser = userObj;
+  };
+  
+
+export const usePostCollection = () => {
+  return [...postCollection];
+};
+
+export const getPosts = () => {
+  return fetch(`http://localhost:8088/users`)
+    .then((response) => response.json())
+    .then((parsedResponse) => {
+      const userId = getLoggedInUser().id;
+      console.log("data with user", parsedResponse);
+      postCollection = parsedResponse;
+      return parsedResponse.reverse();
+    });
+};
+export const registerUser = (userObj) => {
+  return fetch(`http://localhost:8088/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-    {
-        id: 2,
-        date: "07/26/2025",
-        concept: "Complex Flexbox",
-        entry: "I tried to have an element in my Flexbox layout also be another Flexbox layout. It hurt my brain. I hate Steve.",
-        mood: "Sad"
-    }
-]
+    body: JSON.stringify(userObj),
+  })
+    .then((response) => response.json())
+    .then((parsedUser) => {
+      setLoggedInUser(parsedUser);
+      return getLoggedInUser();
+    });
+};
 
-/*
-    You export a function that provides a version of the
-    raw data in the format that you want
-*/
-export const getJournalEntries = () => {
-    const sortedByDate = journal.sort(
-        (currentEntry, nextEntry) =>
-            Date.parse(currentEntry.date) - Date.parse(nextEntry.date)
-    )
-    return sortedByDate
-}
+export const loginUser = (userObj) => {
+  return fetch(
+    `http://localhost:8088/users?name=${userObj.name}&email=${userObj.email}`
+  )
+    .then((response) => response.json())
+    .then((parsedUser) => {
+      //is there a user?
+      console.log("parsedUser", parsedUser); //data is returned as an array
+      if (parsedUser.length > 0) {
+        setLoggedInUser(parsedUser[0]);
+        return getLoggedInUser();
+      } else {
+        //no user
+        return false;
+      }
+    });
+};
+
+export const getSinglePost = (postId) => {
+  return fetch(`http://localhost:8088/journal/${postId}`).then((response) =>
+    response.json()
+  );
+};
+
+export const deletePost = (postId) => {
+  return fetch(`http://localhost:8088/journal/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());
+};
+
+export const updatePost = (postObj) => {
+  return fetch(`http://localhost:8088/journal/${postObj.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postObj),
+  }).then((response) => response.json());
+};

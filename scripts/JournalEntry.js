@@ -1,5 +1,6 @@
 import { clearInputs } from "./JournalEdit.js";
 import { showPostList } from "./JournalEntryList.js";
+import { getLikes } from "./JournalData.js";
 
 const apiURL = "http://localhost:8088/journal";
 
@@ -31,17 +32,26 @@ document.addEventListener("click", (event) => {
   }
 });
 
+const getNumberOfLikes = (postId) => {
+  getLikes(postId)
+  .then(response => {
+    document.querySelector(`#likes__${postId}`).innerHTML = `👍 ${response.length}`;
+  })
+}
+
 export const Post = (postObject) => {
   return `
       <section class="post">
         <header>
-            <p class="date">${postObject.date}</p>
+            <div class="date" input[type="date"]>${postObject.date}</div>
         </header>
         <p class="concepts">Concepts Covered: ${postObject.concept}</p>
         <p class="entry">Journal Entry: ${postObject.entry}</p>
         <p class="mood">Mood: ${postObject.mood}</p>
         <div><button id="edit__${postObject.id}">Edit</button>
-        <button id="delete__${postObject.id}">Delete</button></div>
+        <button id="delete__${postObject.id}">Delete</button> <button id="like__${postObject.id}">Like</button>
+        </div>
+        <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
         <section class="breakpoint"></section>
       </section>
     `;

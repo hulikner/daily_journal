@@ -1,6 +1,6 @@
 import { postEntry } from "./JournalEntry.js";
 import { PostList, showPostList } from "./JournalEntryList.js";
-import { PostEdit, clearInputs } from "./JournalEdit.js"; 
+import { PostEdit, clearInputs, ResetEdit } from "./JournalEdit.js"; 
 import { LoginForm } from "../auth/LoginForm.js";
 import { RegisterForm } from "../auth/RegisterForm.js";
 import { Post } from "./JournalEntry.js";
@@ -13,6 +13,9 @@ import {
   logoutUser,
   getLoggedInUser,
   setLoggedInUser,
+  postLike,
+  loginUser,
+  registerUser,
 } from "./JournalData.js";
 
 const showEdit = (postObj) => {
@@ -21,9 +24,10 @@ const showEdit = (postObj) => {
 };
 
 const checkForUser = () => {
-    if (sessionStorage.getItem("user")){
-      setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
+    if (sessionStorage.getItem("users")){
+      setLoggedInUser(JSON.parse(sessionStorage.getItem("users")));
       showPostList();
+      showLoginRegister()
     }else {
         showLoginRegister();
     }
@@ -33,11 +37,41 @@ const showLoginRegister = () => {
     
     const entryElement = document.querySelector(".navBar");
     //template strings can be used here too
-    entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+    if (getLoggedInUser().id) {
+      entryElement.innerHTML = `<hr/> <hr/><button class="nav-link" id="logout">Logout</button>`
+  } else {
+    entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`
+      
+      showPostList()
+  }
+    
     //make sure the post list is cleared out too
   document.querySelector(".postList");
   document.innerHTML = "";
 }
+
+const showLogin = () => {
+  if (getLoggedInUser().id) {
+      return `<p class="nav-link" id="logout">Logout</p>`
+  } else {
+      return `${LoginForm()} <hr/> <hr/> ${RegisterForm()}
+      <p class="nav-link" id="login">Login</p>`
+  }
+}
+
+document.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("like")) {
+	  const likeObject = {
+		 postId: parseInt(event.target.id.split("__")[1]),
+		 userId: getLoggedInUser().id
+	  }
+	  postLike(likeObject)
+		.then(response => {
+		  showPostList();
+		})
+	}
+  })
 
 document.addEventListener("click", event => {
     if (event.target.id === "logout") {
@@ -60,12 +94,12 @@ document.addEventListener("click", event => {
       loginUser(userObject)
       .then(dbUserObj => {
         if(dbUserObj){
-          sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+          sessionStorage.setItem("users", JSON.stringify(dbUserObj));
           showPostList();
         }else {
           //got a false value - no user
-          const entryElement = document.querySelector(".form");
-          entryElement.innerHTML = `<p class="center">That user does not exist. Please try again or register for your free account.</p> ${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+          const entryElement = document.querySelector("#form");
+          entryElement.innerHTML = `<p class="center">That user does not exist. Please try again or register for your free account.`;
         }
       })
     }
@@ -81,7 +115,7 @@ document.addEventListener("click", event => {
       }
       registerUser(userObject)
       .then(dbUserObj => {
-        sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+        sessionStorage.setItem("users", JSON.stringify(dbUserObj));
         showPostList();
       })
     }
@@ -126,8 +160,8 @@ document.addEventListener("click", (event) => {
     };
 
     updatePost(postObject).then((response) => {
-      clearInputs();
-      showPostList();
+    ResetEdit();
+    showPostList();
     });
   }
 });
@@ -135,6 +169,7 @@ document.addEventListener("click", (event) => {
 document.addEventListener("click", (event) => {
   event.preventDefault();
   if (event.target.id.startsWith("newPost__cancel")) {
+    ResetEdit();
     showPostList();
   }
 });

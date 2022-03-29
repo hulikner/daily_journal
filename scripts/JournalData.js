@@ -2,6 +2,7 @@ let postCollection = [];
 let loggedInUser = {};
 
 export const logoutUser = () => {
+  sessionStorage.removeItem("users")
   loggedInUser = {};
 };
 
@@ -10,6 +11,7 @@ export const getLoggedInUser = () => {
   };
   
   export const setLoggedInUser = (userObj) => {
+    sessionStorage.setItem("users",JSON.stringify(userObj));
     loggedInUser = userObj;
   };
   
@@ -18,11 +20,28 @@ export const usePostCollection = () => {
   return [...postCollection];
 };
 
+export const getLikes = (postId) => {
+  return fetch(`http://localhost:8088/userLikes?postId=${postId}`)
+    .then(response => response.json())
+}
+
+export const postLike = likeObject => {
+	return fetch(`http://localhost:8088/userLikes/`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(likeObject)
+	})
+		.then(response => response.json())
+		
+}
+
 export const getPosts = () => {
-  return fetch(`http://localhost:8088/users`)
+  const userId = getLoggedInUser().id;
+  return fetch(`http://localhost:8088/journal`)
     .then((response) => response.json())
     .then((parsedResponse) => {
-      const userId = getLoggedInUser().id;
       console.log("data with user", parsedResponse);
       postCollection = parsedResponse;
       return parsedResponse.reverse();

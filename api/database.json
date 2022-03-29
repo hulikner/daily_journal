@@ -1,18 +1,11 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "Derick",
-      "email": "derick@nss.com"
-    }
-  ],
   "journal": [
     {
-      "id": 2,
-      "date": "07/26/2025",
-      "concept": "Complex Flexbox",
+      "date": "",
+      "concept": "Complex Flexboxx",
       "entry": "I tried to have an element in my Flexbox layout also be another Flexbox layout. It hurt my brain. I hate Steve.",
-      "mood": "Sad"
+      "mood": "happy",
+      "id": 2
     },
     {
       "date": "2022-03-09",
@@ -33,28 +26,70 @@
       "concept": "asdf",
       "entry": "asdf",
       "mood": "happy",
-      "id": 5
-    },
-    {
-      "date": "",
-      "concept": "asdf",
-      "entry": "asdf",
-      "mood": "happy",
       "id": 6
     },
     {
-      "date": "2022-03-16",
-      "concept": "asdf",
-      "entry": "asdf",
-      "mood": "happy",
+      "date": "2022-03-25",
+      "concept": "edit button",
+      "entry": "editing a post",
+      "mood": "sad",
+      "id": 8
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Derick",
+      "email": "derick@nss.com"
+    },
+    {
+      "name": "Derick",
+      "email": "derick@nss.com",
+      "id": 2
+    }
+  ],
+  "userLikes": [
+    {
+      "postId": 6,
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "postId": 1,
+      "id": 2
+    },
+    {
+      "postId": 7,
+      "id": 3
+    },
+    {
+      "postId": 7,
+      "id": 4
+    },
+    {
+      "postId": 7,
+      "id": 5
+    },
+    {
+      "postId": 7,
+      "id": 6
+    },
+    {
+      "postId": 7,
       "id": 7
     },
     {
-      "date": "",
-      "concept": "asfhsc",
-      "entry": "cdsds",
-      "mood": "happy",
+      "postId": 7,
       "id": 8
+    },
+    {
+      "postId": 8,
+      "id": 9
+    },
+    {
+      "postId": 8,
+      "userId": 1,
+      "id": 10
     }
   ]
 }

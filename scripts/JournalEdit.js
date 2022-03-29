@@ -57,3 +57,54 @@ export const PostEdit = (postObj) => {
         </form>
         `;
 };
+
+export const ResetEdit = () => {
+  const resetEditElement = document.querySelector("#form");
+  resetEditElement.innerHTML = `
+	
+	  
+	  <form id="form" action="">
+  
+		  <fieldset>
+		  <label for="journalDate">Date of Entry</label>
+			  <input value=""
+					 name="journalDate"
+					 class="journalDate"
+					 type="date"
+					 placeholder="Date" />
+		  </fieldset>
+		  <fieldset>
+		  <label for="conceptsCovered">Concepts Covered</label>
+			  <input value=""
+					 name="conceptsCovered"
+					 class="conceptsCovered"
+					 type="text"
+					 placeholder="concepts" />
+		  </fieldset>
+		  <fieldset>
+		  <label for="journalEntry">Journal Entry</label>
+			  <input value=""
+					 name="journalEntry"
+					 class="journalEntry"
+					 type="text"
+					 placeholder="Journal Entry" />
+		  </fieldset>
+		  <fieldset>
+		  <label for="mood">Mood for the Day</label>
+					 <select value="" name="mood" id="mood">
+					  <option value="happy">Happy</option>
+					  <option value="sad">Sad</option>
+					  <option value="lost">Lost</option>
+					  <option value="ok">OK</option>
+		  </select>
+		  </fieldset>
+  
+		  <fieldset>
+		  
+		  <button type="button" id="Record">Record Journal Entry</button><br />
+        <button type="button" id="search">Filter by Date</button>
+        <input type="text" name="searchInput" id="searchInput" />
+		  </fieldset>
+		  </form>
+		  `;
+};

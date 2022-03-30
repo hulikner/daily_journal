@@ -4,7 +4,7 @@ export const clearInputs = () => {
   const concept = (document.querySelector(
     "input[name='conceptsCovered']"
   ).value = null);
-  const entry = (document.querySelector("input[name='journalEntry']").value =
+  const entry = (document.querySelector("textarea[name='journalEntry']").value =
     null);
   const mood = (document.querySelector("select[name='mood']").value = null);
 };
@@ -33,7 +33,7 @@ export const PostEdit = (postObj) => {
 		</fieldset>
 		<fieldset>
         <label for="journalEntry">Journal Entry</label>
-			<input value="${postObj.entry}"
+			<textarea value="${postObj.entry}"
 				   name="journalEntry"
 				   class="journalEntry"
 				   type="text"
@@ -83,7 +83,7 @@ export const ResetEdit = () => {
 		  </fieldset>
 		  <fieldset>
 		  <label for="journalEntry">Journal Entry</label>
-			  <input value=""
+			  <textarea value=""
 					 name="journalEntry"
 					 class="journalEntry"
 					 type="text"

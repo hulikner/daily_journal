@@ -13,6 +13,100 @@ textarea {
   padding: 0;
   margin-top: 5em;
 }
+
+textarea {
+  width: 100%;
+  max-width: 900px;
+  resize: none;
+  height: 100px;
+  margin-top: 2px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  border: 2px solid black;
+  border-radius: 10px;
+  outline:none;
+}
+form {
+  display:flex;
+  flex-direction: column;
+  background-color: rgb(117, 132, 182);
+  max-width: 30%;
+  margin-left:20px;
+  border: 10px solid black;
+  border-radius: 10px;
+  font:bold;
+  font-weight: bold;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+fieldset{
+  border: 2px solid black;
+  border-radius: 5px;
+  margin:2px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+input{
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+select{
+  border: 2px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  outline:none;
+}
+button{
+  border: 2px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  
+
+
+
+
+
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+button:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+ 
+
 .post {
   display: flex;
   flex: wrap;
@@ -22,6 +116,8 @@ textarea {
   border-radius: 10px;
   padding: 10px;
   margin: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
 }
 .navBar{
   display:flex;
@@ -74,3 +170,4 @@ h2 {
 .loginForm {
   margin: 0 25%;
 }
+

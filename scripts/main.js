@@ -1,5 +1,5 @@
 import { postEntry } from "./JournalEntry.js";
-import { PostList, showPostList } from "./JournalEntryList.js";
+import { PostList, showPostList, showMyPostList } from "./JournalEntryList.js";
 import { PostEdit, clearInputs, ResetEdit } from "./JournalEdit.js";
 import { LoginForm } from "../auth/LoginForm.js";
 import { RegisterForm } from "../auth/RegisterForm.js";
@@ -14,7 +14,7 @@ const showEdit = (postObj) => {
 const checkForUser = () => {
   if (sessionStorage.getItem("users")) {
     setLoggedInUser(JSON.parse(sessionStorage.getItem("users")));
-    showPostList();
+    showPostList()
     showLoginRegister();
   } else {
     showLoginRegister();
@@ -29,7 +29,7 @@ const showLoginRegister = () => {
   } else {
     entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
 
-    showPostList();
+    
   }
 
   //make sure the post list is cleared out too
@@ -79,7 +79,7 @@ document.addEventListener("click", (event) => {
     loginUser(userObject).then((dbUserObj) => {
       if (dbUserObj) {
         sessionStorage.setItem("users", JSON.stringify(dbUserObj));
-        showPostList();
+        showLoginRegister();
       } else {
         //got a false value - no user
         const entryElement = document.querySelector("#form");
@@ -99,7 +99,7 @@ document.addEventListener("click", (event) => {
     };
     registerUser(userObject).then((dbUserObj) => {
       sessionStorage.setItem("users", JSON.stringify(dbUserObj));
-      showPostList();
+      showLoginRegister();
     });
   }
 });
@@ -108,6 +108,14 @@ document.addEventListener("click", (event) => {
   if (event.target.id === "logout") {
     logoutUser();
     console.log(getLoggedInUser());
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "myPosts") {
+    showMyPostList();
+    
+    
   }
 });
 
@@ -165,4 +173,4 @@ document.addEventListener("click", (event) => {
 });
 
 checkForUser();
-showPostList();
+

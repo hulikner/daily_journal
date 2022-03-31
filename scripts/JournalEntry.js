@@ -24,7 +24,7 @@ document.addEventListener("click", (event) => {
       concept: document.querySelector("#conceptsCovered").value,
       entry: document.querySelector("#journalEntry").value,
       mood: document.querySelector("#mood").value,
-      userId: (getLoggedInUser().id)
+      usersId: (getLoggedInUser().id)
     };
     postEntry(newPost).then(() => {
       clearInputs();
@@ -41,12 +41,14 @@ const getNumberOfLikes = (postId) => {
 }
 
 export const Post = (postObject) => {
+  if (getLoggedInUser().id === postObject.usersId){
   return `
       
   <section class="post">
  
   <header>
   <div class="date" input[type="date"]>${postObject.date}</div>
+  <div> By: ${postObject.users.name}</div>
   </header>
   <p class="concepts">Concepts Covered: ${postObject.concept}</p>
   <p class="entry">Journal Entry: ${postObject.entry}</p>
@@ -60,4 +62,26 @@ export const Post = (postObject) => {
 
   </section>
     `;
+  }else{
+    return `
+      
+    <section class="post">
+   
+    <header>
+    <div class="date" input[type="date"]>${postObject.date}</div>
+    <div> By: ${postObject.users.name}</div>
+    </header>
+    <p class="concepts">Concepts Covered: ${postObject.concept}</p>
+    <p class="entry">Journal Entry: ${postObject.entry}</p>
+    <p class="mood">Mood: ${postObject.mood}</p>
+    <p><button id="like__${postObject.id}">Like</button></p>
+    </div>
+    <p id="likes__${postObject.id}">👍 ${getNumberOfLikes(postObject.id)}</p>
+  
+    <section class="breakpoint"></section>
+  
+    </section>
+      `;
+
+  }  
 };

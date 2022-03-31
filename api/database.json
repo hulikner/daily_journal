@@ -13,60 +13,11 @@
   ],
   "journal": [
     {
-      "date": "",
-      "concept": "Complex Flexboxx",
-      "entry": "I tried to have an element in my Flexbox layout also be another Flexbox layout. It hurt my brain. I hate Steve.",
-      "mood": "happy",
-      "id": 2
-    },
-    {
-      "date": "2022-03-09",
-      "concept": "asdf",
-      "entry": "asdf",
-      "mood": "happy",
-      "id": 3
-    },
-    {
-      "date": "",
-      "concept": "asdf",
-      "entry": "asdf",
-      "mood": "happy",
-      "id": 4
-    },
-    {
-      "date": "",
-      "concept": "asdf",
-      "entry": "asdf",
-      "mood": "happy",
-      "id": 6
-    },
-    {
-      "date": "2022-03-25",
-      "concept": "edit button",
-      "entry": "editing a post",
-      "mood": "sad",
-      "id": 8
-    },
-    {
-      "date": "",
-      "concept": "",
-      "entry": " ",
-      "mood": "happy",
-      "id": 9
-    },
-    {
-      "date": "",
-      "concept": "",
-      "entry": " ",
-      "mood": "happy",
-      "id": 10
-    },
-    {
       "date": "2001-01-01",
       "concept": "later",
       "entry": " byyyyeeeee",
       "mood": "happy",
-      "userId": 1,
+      "usersId": 1,
       "id": 11
     },
     {
@@ -74,8 +25,16 @@
       "concept": "dxfghghghghg",
       "entry": " 47523745242",
       "mood": "happy",
-      "userId": 1,
+      "usersId": 1,
       "id": 12
+    },
+    {
+      "date": "1111-11-11",
+      "concept": "dghjfghjkfhjk",
+      "entry": " fhjkfghjkfhjkfhjkfhjk",
+      "mood": "happy",
+      "usersId": 2,
+      "id": 13
     }
   ],
   "userLikes": [

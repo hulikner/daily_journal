@@ -11,7 +11,7 @@ export const getLoggedInUser = () => {
   };
   
   export const setLoggedInUser = (userObj) => {
-    sessionStorage.setItem("users",JSON.stringify(userObj));
+    
     loggedInUser = userObj;
   };
   
@@ -37,9 +37,20 @@ export const postLike = likeObject => {
 		
 }
 
+export const getMyPosts = () => {
+  const usersId = getLoggedInUser().id;
+  return fetch(`http://localhost:8088/journal?_expand=users&usersId=${usersId}`)
+    .then((response) => response.json())
+    .then((parsedResponse) => {
+      console.log("data with user", parsedResponse);
+      postCollection = parsedResponse;
+      return parsedResponse.reverse();
+    });
+};
+
 export const getPosts = () => {
   const userId = getLoggedInUser().id;
-  return fetch(`http://localhost:8088/journal`)
+  return fetch(`http://localhost:8088/journal?_expand=users`)
     .then((response) => response.json())
     .then((parsedResponse) => {
       console.log("data with user", parsedResponse);

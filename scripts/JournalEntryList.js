@@ -1,5 +1,5 @@
 import { Post } from "./JournalEntry.js";
-import { getPosts } from "./JournalData.js";
+import { getPosts, getMyPosts } from "./JournalData.js";
 
 const entryLog = document.querySelector("#journalEntry");
 
@@ -26,3 +26,11 @@ export const PostList = (allPosts) => {
   }
   return postHTML;
 };
+
+export const showMyPostList = () => {
+  const postElement = document.querySelector("#postList");
+  getMyPosts().then((allPosts) => {
+    postElement.innerHTML = PostList(allPosts);
+  });
+};
+
